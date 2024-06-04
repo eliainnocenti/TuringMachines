@@ -1,11 +1,15 @@
-import pygame
-import time
-from machines.x_squared import tm
+import pygame, time, importlib
+
+machine_input = input("\nEnter the machine to run (x_squared): ")
+machine_module = importlib.import_module(f"machines.{machine_input}")
+create_tm = machine_module.create_tm
+
+tape_input = " " + input("Enter the tape input (unary): ")
+tm = create_tm(tape_input)
 
 visualization_choice = input("Do you want to execute the program with pygame visualization? (y/n): ")
 
 if visualization_choice.lower() == "n":
-
     tm.run()
     print("\nFinal Tape:", tm.get_tape())
     print("\nTransitions Log:")
@@ -13,9 +17,10 @@ if visualization_choice.lower() == "n":
     exit()
 
 elif visualization_choice.lower() == "y":
-
     # Pygame initialization
     pygame.init()
+
+    # FIXME: add a way to change the window dimensions dinamically
 
     # Window dimensions
     WINDOW_WIDTH = 800
