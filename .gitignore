@@ -1,0 +1,8 @@
+# git files
+/.git/
+
+# jetbrains files
+/.idea/
+
+# macos files
+.DS_Store
