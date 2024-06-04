@@ -1,11 +1,10 @@
-# git files
-/.git/
-
 # jetbrains files
 /.idea/
 
 # macos files
 .DS_Store
+/machines/.DS_Store
 
 # python files
 /__pycache__/
+/machines/__pycache__/
