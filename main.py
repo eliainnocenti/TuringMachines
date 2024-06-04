@@ -2,14 +2,12 @@ import pygame
 import time
 from machines.x_squared import tm
 
-print(pygame.__version__)
-
 visualization_choice = input("Do you want to execute the program with pygame visualization? (y/n): ")
 
 if visualization_choice.lower() == "n":
 
     tm.run()
-    print("Final Tape:", tm.get_tape())
+    print("\nFinal Tape:", tm.get_tape())
     print("\nTransitions Log:")
     tm.print_transitions_log()
     exit()
@@ -47,15 +45,20 @@ elif visualization_choice.lower() == "y":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    running = False
 
         screen.fill((0, 0, 0))
         draw_tape(tm)
         pygame.display.flip()
 
-        if not tm.step():
-            running = False
+        #if not tm.step():
+        #    running = False
 
-        time.sleep(0.5)
+        tm.step()
+
+        time.sleep(0.05)
 
     pygame.quit()
 

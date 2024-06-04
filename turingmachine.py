@@ -31,7 +31,7 @@ class TuringMachine:
         if (self.current_state, current_symbol) in self.transition_function:
             new_state, new_symbol, direction = self.transition_function[(self.current_state, current_symbol)]
             self.transitions_log.append((self.current_state, current_symbol, new_state, new_symbol, direction))
-            print(f"State: {self.current_state}, Read: {current_symbol}, Next State: {new_state}, Write: {new_symbol}, Move: {direction}")
+            #print(f"State: {self.current_state}, Read: {current_symbol}, Next State: {new_state}, Write: {new_symbol}, Move: {direction}")
             self.tape[self.head_position] = new_symbol
             self.current_state = new_state
             if direction == "R":

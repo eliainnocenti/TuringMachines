@@ -7,14 +7,14 @@ tm = TuringMachine(
     blank_symbol=" ",
     initial_state="q0",
     final_states={"h"},
-    transition_function={ # TODO: FIXME
+    transition_function={
         ("q0",  " "): ("q1",  " ", "R"), # 1
         ("q1",  " "): ("h",   " ", "L"), # 2
         ("q1",  "1"): ("q2",  "*", "R"), # 3
         ("q2",  "1"): ("q2",  "1", "R"), # 4 a
         ("q2",  "#"): ("q2",  "#", "R"), # 4 b
         ("q2",  " "): ("q3",  "#", "L"), # 5
-        ("q2",  " "): ("q15", " ", "L"), # 6
+        #("q2",  " "): ("q15", " ", "L"), # 6 # FIXME
         ("q3",  "1"): ("q3",  "1", "L"), # 7 a
         ("q3",  "#"): ("q3",  "#", "L"), # 7 b
         ("q3",  "*"): ("q4",  "*", "R"), # 8
@@ -57,5 +57,5 @@ tm = TuringMachine(
         ("q22", " "): ("h",   " ", "S"), # 32
     },
     tape_symbols={"1", "2", "x", "*", "#", "-", " "},  # Define the tape symbols
-    # 2 == 1°, * == x°, - == #°     # TODO: redefine
+    # 2 == 1°, * == x°, - == #°
 )
