@@ -1,9 +1,8 @@
 from turingmachine import TuringMachine
 
 def create_tm(tape_input):
-    # Definition of the Turing machine with custom symbols
+    # f(x) = x^2
     tm = TuringMachine(
-        # f(x) = x^2
         tape=tape_input,
         blank_symbol=" ",
         initial_state="q0",
@@ -57,7 +56,6 @@ def create_tm(tape_input):
             ("q22", "-"): ("q22", "1", "L"), # 31 e
             ("q22", " "): ("h",   " ", "S"), # 32
         },
-        tape_symbols={"1", "2", "x", "*", "#", "-", " "},  # Define the tape symbols
-        # 2 == 1°, * == x°, - == #°
+        tape_symbols={"1", "2", "x", "*", "#", "-", " "}, # 2 == 1°, * == x°, - == #°
     )
     return tm
