@@ -35,7 +35,9 @@ python main.py
 ## Demo
 
 ![](resources/x_squared.gif)
-*function: f(x) = x<sup> 2</sup> - input: `11111`*
+*function: `f(x) = x²`*  
+*input: `11111`*  
+*output: `1111111111111111111111111`*
 
 ---
 
