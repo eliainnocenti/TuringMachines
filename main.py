@@ -43,7 +43,7 @@ if tm is not None:
         # FIXME: add a way to change the window dimensions dinamically
 
         # Window dimensions
-        WINDOW_WIDTH = 800
+        WINDOW_WIDTH = 1200
         WINDOW_HEIGHT = 200
         TAPE_CELL_SIZE = 40
         TAPE_HEIGHT = 50

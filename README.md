@@ -31,3 +31,7 @@ pip install requirements.txt
 ```bash
 python main.py
 ```
+
+## Demo
+
+![](resources/x_squared.gif)

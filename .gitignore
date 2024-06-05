@@ -4,6 +4,7 @@
 # macos files
 .DS_Store
 /machines/.DS_Store
+/resources/.DS_Store
 
 # python files
 /__pycache__/
