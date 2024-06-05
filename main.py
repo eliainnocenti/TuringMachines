@@ -21,7 +21,7 @@ while machine_input.lower() == 'list' or machine_input not in machine_names:
         create_tm = machine_module.create_tm
 
         tape_input = input("Enter the tape input (unary): ")
-        if tape_input and not all(char == '1' for char in tape_input[1:]):
+        if not all(char == '1' or char == ' ' for char in tape_input): # TODO: update
             raise ValueError("Invalid input. The tape input must be unary (a string of 1s).")
         tape_input = " " + tape_input
         tm = create_tm(tape_input)
