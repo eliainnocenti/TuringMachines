@@ -62,6 +62,11 @@ class TuringMachine:
         return self.current_state in self.final_states
 
     def print_transitions_log(self):
+        print("\nTransitions Log:")
         for transition in self.transitions_log:
             print(
                 f"State: {transition[0]}, Read: {transition[1]}, Next State: {transition[2]}, Write: {transition[3]}, Move: {transition[4]}")
+
+    def get_decimal(self):
+        tape = self.get_tape()
+        return tape.count('1')

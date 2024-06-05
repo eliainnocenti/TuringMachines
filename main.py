@@ -20,42 +20,68 @@ while machine_input.lower() == 'list' or machine_input not in machine_names:
         machine_module = importlib.import_module(f"machines.{machine_input}")
         create_tm = machine_module.create_tm
 
-        tape_input = input("Enter the tape input (unary): ")
-        if not all(char == '1' or char == ' ' for char in tape_input): # TODO: update
-            raise ValueError("Invalid input. The tape input must be unary (a string of 1s).")
-        tape_input = " " + tape_input
-        tm = create_tm(tape_input)
+        tape_input = ''
+
+        if machine_input == 'x_squared':
+            print("\nThis machine calculates the square of a number in unary.")
+            question = input("Do you want to enter a decimal number or a unary number? (d/u): ")
+            if question == 'd':
+                decimal_input = input("Enter the decimal number: ")
+                if not all(char.isdigit() for char in decimal_input): # TODO: check
+                    raise ValueError("Invalid input. The decimal number must be a string of digits.")
+                tape_input = " " + "1" * int(decimal_input)
+                tm = create_tm(tape_input)
+            elif question == 'u':
+                tape_input = input("Enter the unary number: ")
+                if not all(char == '1' or char == ' ' for char in tape_input): # TODO: check
+                    raise ValueError("Invalid input. The unary number must be a string of 1s.")
+                tape_input = " " + tape_input
+                tm = create_tm(tape_input)
+            else:
+                raise ValueError("Invalid input.")
 
 if tm is not None:
     visualization_choice = input("Do you want to execute the program with pygame visualization? (y/n): ")
 
     if visualization_choice.lower() == "n":
         tm.run()
-        print("\nFinal Tape:", tm.get_tape())
-        print("\nTransitions Log:")
-        tm.print_transitions_log()
+        tape = tm.get_tape()
+        if len(tape) < 20:
+            print("\nFinal Tape:", tape)
+        else:
+            print("\nFinal Tape:", tape[:10], "...", tape[-10:])
+        if tm.is_accepting():
+            print("\nResult: ", tm.get_decimal())
+        #tm.print_transitions_log()
         exit()
 
     elif visualization_choice.lower() == "y":
+
         # Pygame initialization
         pygame.init()
 
-        # FIXME: add a way to change the window dimensions dinamically
+        def calculate_window_dimensions(tape, cell_size, min_width, height):
+            required_width = len(tape) * (len(tape)-1) * cell_size
+            return max(min_width, required_width), height
 
         # Window dimensions
-        WINDOW_WIDTH = 1200
         WINDOW_HEIGHT = 200
+        MIN_WINDOW_WIDTH = 600
         TAPE_CELL_SIZE = 40
         TAPE_HEIGHT = 50
+
+        # Calculate dimensions
+        tape = tm.get_tape()
+        WINDOW_WIDTH, WINDOW_HEIGHT = calculate_window_dimensions(tape, TAPE_CELL_SIZE, MIN_WINDOW_WIDTH, WINDOW_HEIGHT)
 
         # Window creation
         screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption('Turing Machine Visualization')
 
         # Function to draw the tape
-        def draw_tape(tm):
-            tape = tm.get_tape()
-            head_position = tm.get_head_position()
+        def draw_tape(turingmachine):
+            tape = turingmachine.get_tape()
+            head_position = turingmachine.get_head_position()
 
             for i, symbol in enumerate(tape):
                 cell_color = (255, 255, 255) if i != head_position else (255, 0, 0)

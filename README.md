@@ -4,13 +4,16 @@ This is a simple implementation of a Turing Machine in Python. It is based on th
 - Q is a finite set of states, assumed not to contain h, the halt state
 - Σ, the input alphabet, is a finite set of symbols
 - Γ, the tape alphabet, is a finite set with Σ ⊆ Γ; Γ is assumed not to contain Δ, the blank tape symbol
-- q0 ∈ Q is the initial state
+- q<sub>0</sub> ∈ Q is the initial state
 - δ is a partial function (i.e. possibly undefined at some points):
 
     δ: Q × (Γ ∪ {Δ}) → (Q ∪ {h}) × (Γ ∪ {Δ}) × {L, R, S}
 
-The machine is run by providing an initial tape, and the machine will run until it halts. The machine will halt if it reaches the halt state.
+The Turing Machine M accepts x ∈ Σ* if starting M with input x leads to a halting configuration.
+In other words, x is accepted if for some strings y and z in (Γ ∪ {Δ})* and for some a ∈ Γ ∪ {Δ}:
+(q<sub>0</sub>, <u>Δ</u>x) ⊢*<sub>M</sub> (h, y<u>a</u>z)
 
+We say M halts on input x and L(M), the language accepted by M, is the set of input strings accepted by M: L(M) = { x ∈ Σ* | (q<sub>0</sub>, <u>Δ</u>x) ⊢*<sub>M</sub> (h, y<u>a</u>z) }.
 
 ## Machines
 
