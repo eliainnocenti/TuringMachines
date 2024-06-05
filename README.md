@@ -3,7 +3,7 @@
 This is a simple implementation of a Turing Machine in Python. It is based on the definition of a Turing Machine as a 5-tuple (Q, Σ, Γ, q0, δ), where:
 - Q is a finite set of states, assumed not to contain h, the halt state
 - Σ, the input alphabet, is a finite set of symbols
-- Γ, the tape alphabet, is a finite set with Σ ⊆ Γ; Γ is assumed not to contain Δ, the blank symbol
+- Γ, the tape alphabet, is a finite set with Σ ⊆ Γ; Γ is assumed not to contain Δ, the blank tape symbol
 - q0 ∈ Q is the initial state
 - δ is a partial function (i.e. possibly undefined at some points):
 
@@ -35,3 +35,10 @@ python main.py
 ## Demo
 
 ![](resources/x_squared.gif)
+*function: f(x) = x<sup> 2</sup> - input: `11111`*
+
+---
+
+**Authors:** [Elia Innocenti](https://github.com/eliainnocenti), [Antonio Natale Bruno](https://github.com/antnatb)
+
+**Contacts:** [elia.innocenti@edu.unifi.it](mailto:elia.innocenti@edu.unifi.it), [antonio.bruno@edu.unifi.it](mailto:antonio.bruno@edu.unifi.it)
